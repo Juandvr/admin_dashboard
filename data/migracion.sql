@@ -1,0 +1,16 @@
+CREATE DATABASE agenda;
+use agenda;
+CREATE TABLE citas (
+id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+nombre_cliente VARCHAR(30) NOT NULL,
+apellido VARCHAR(30) NOT NULL,
+email VARCHAR(50) NOT NULL,
+telefono INT(3),
+nombre_mascota VARCHAR(30),
+raza VARCHAR(30),
+tamano VARCHAR(10),
+sexo VARCHAR(10),
+fecha DATE,
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

@@ -1,0 +1,109 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #2c88d9;
+    color: white;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar .logo {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+.sidebar .menu {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar .menu a {
+    display: block;
+    color: white;
+    padding: 10px 0;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+.sidebar .menu a:hover {
+    background-color: #1c6bb0;
+}
+
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.search-bar input {
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 300px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.user-name {
+    margin-right: 10px;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.projects, .announcements, .trending {
+    margin-top: 20px;
+}
+
+.projects h2, .announcements h2, .trending h2 {
+    margin-bottom: 10px;
+}
+
+.project-cards, .announcement-cards, .trending-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.project-card, .announcement-card, .trending-card {
+    background-color: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.project-card h3, .announcement-card h3, .trending-card h3 {
+    margin-top: 0;
+}
+
+.project-actions {
+    margin-top: 10px;
+}
+
+.project-actions span {
+    margin-right: 10px;
+    cursor: pointer;
+}
