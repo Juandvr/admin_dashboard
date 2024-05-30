@@ -29,36 +29,9 @@ $resultado['mensaje'] = $error->getMessage();
 }
 }
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="estilo.css">
-</head>
-<body>
-    <div class="container">
-        <aside class="sidebar">
-            <h2 class="logo">Dashboard</h2>
-            <nav class="menu">
-                <a href="index.html">Inicio</a>
-            </nav>
-            <nav class="menu">
-                <a href="crear.php">Crear cita</a>
-            </nav>
-        </aside>
-        <main class="main-content">
-            <header class="header">
-                <div class="search-bar">
-                    <input type="text" placeholder="Search...">
-                </div>
-                <div class="user-info">
-                    <span class="user-name">Morgan Oakley (@morgan)</span>
-                    <img src="user-avatar.png" alt="User Avatar" class="user-avatar">
-                </div>
-            </header>
-            <section class="projects">
+
+<?php include "template/header.php"; ?>
+
             <?php
             if (isset($resultado)) {
             ?>
@@ -118,14 +91,11 @@ $resultado['mensaje'] = $error->getMessage();
             </div>
             <div class="form-group">
             <input type="submit" name="submit" class="btn btn-primary" value="Enviar">
-            <a class="btn btn-primary" href="index.html">Regresar al inicio</a>
+            <a class="btn btn-primary" href="index.php">Regresar al inicio</a>
             </div>
             </form>
             </div>
             </div>
             </div>
-            </section>
-        </main>
-    </div>
-</body>
-</html>
+
+<?php include "templates/footer.php"; ?>
