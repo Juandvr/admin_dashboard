@@ -11,7 +11,10 @@
         <aside class="sidebar">
             <h2 class="logo">Dashboard</h2>
             <nav class="menu">
-                <a href="#">Agenda</a>
+                <a href="index.html">Inicio</a>
+            </nav>
+            <nav class="menu">
+                <a href="crear.php">Crear cita</a>
             </nav>
         </aside>
         <main class="main-content">
