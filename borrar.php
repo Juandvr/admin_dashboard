@@ -12,7 +12,7 @@ $id = $_GET['id'];
 $consultaSQL = "DELETE FROM citas WHERE id =" . $id;
 $sentencia = $conexion->prepare($consultaSQL);
 $sentencia->execute();
-header('Location: /index.php');
+header('Location: /admin_dashboard/index.php');
 } catch(PDOException $error) {
 $resultado['error'] = true;
 $resultado['mensaje'] = $error->getMessage();
