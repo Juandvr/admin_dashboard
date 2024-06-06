@@ -11,7 +11,7 @@ body {
 
 .sidebar {
     width: 250px;
-    background-color: #2c88d9;
+    background-color: #0d5026;
     color: white;
     padding: 20px;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
@@ -36,7 +36,7 @@ body {
 }
 
 .sidebar .menu a:hover {
-    background-color: #1c6bb0;
+    background-color: #57a172;
 }
 
 .main-content {
@@ -106,4 +106,166 @@ body {
 .project-actions span {
     margin-right: 10px;
     cursor: pointer;
+}
+
+/* estilos de la tabla de clientes creados  */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.table th, .table td {
+    border: 2px solid #0e6329;
+    padding: 8px;
+}
+.table th {
+    background-color: #108f62;
+    text-align: left;
+}
+.table tr:hover {
+    background-color: #aed4af;
+}
+
+
+/* estilos del formulario para crear una cita  */
+
+/* Contenedor principal del formulario */
+#formucita .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f7f7f7;
+}
+
+/* Fila del formulario */
+#formucita .row {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+/* Columna que contiene el formulario */
+#formucita .col-md-12 {
+    background-color: #8cb9a6;
+    margin-top: 20px;
+    margin-bottom: auto;
+    border: 2px solid rgb(19, 13, 22);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 8px 10px rgb(88, 85, 89);
+}
+
+/* Título del formulario */
+#formucita h2 {
+    text-align: center;
+    color: #0d0909;
+    margin-bottom: 20px;
+}
+
+/* Campos de entrada del formulario */
+#formucita .form-control {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Campo de entrada en foco */
+#formucita .form-control:focus {
+    border-color: #66e9b7;
+    outline: none;
+    box-shadow: 0 0 8px rgba(17, 106, 63, 0.6);
+}
+
+/* Botón de envío */
+#formucita .btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #376b3d;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Botón de envío en hover */
+#formucita .btn:hover {
+    background-color: #9dce85;
+}
+
+/* estilos del formulario de actualizar cita  */
+
+
+
+/* Contenedor principal del formulario */
+#formeditar .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f7f7f7;
+}
+
+/* Fila del formulario */
+#formeditar .row {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+/* Columna que contiene el formulario */
+#formeditar .col-md-12 {
+    background-color: #8cb9a6;
+    margin-top: 20px;
+    margin-bottom: auto;
+    border: 2px solid rgb(19, 13, 22);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 8px 10px rgb(88, 85, 89);
+}
+
+/* Título del formulario */
+#formeditar h2 {
+    text-align: center;
+    color: #0d0909;
+    margin-bottom: 20px;
+}
+
+/* Campos de entrada del formulario */
+#formeditar .form-control {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Campo de entrada en foco */
+#formeditar .form-control:focus {
+    border-color: #66e9b7;
+    outline: none;
+    box-shadow: 0 0 8px rgba(17, 106, 63, 0.6);
+}
+
+/* Botón de envío */
+#formeditar .btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #376b3d;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Botón de envío en hover */
+#formeditar .btn:hover {
+    background-color: #9dce85;
 }
