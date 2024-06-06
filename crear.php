@@ -19,8 +19,9 @@ if (isset($_POST['submit'])) {
             "tamano" => $_POST['tamano'],
             "sexo" => $_POST['sexo'],
             "fecha" => $_POST['fecha'],
+            "hora" => $_POST['hora'],
         );
-        $consultaSQL = "INSERT INTO citas (nombre_cliente, apellido, email, telefono, nombre_mascota, raza, tamano, sexo, fecha) values (:" . implode(", :", array_keys($cita)) . ")";
+        $consultaSQL = "INSERT INTO citas (nombre_cliente, apellido, email, telefono, nombre_mascota, raza, tamano, sexo, fecha, hora) values (:" . implode(", :", array_keys($cita)) . ")";
         $sentencia = $conexion->prepare($consultaSQL);
         $sentencia->execute($cita);
     } catch (PDOException $error) {

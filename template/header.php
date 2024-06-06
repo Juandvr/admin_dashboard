@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
@@ -20,8 +22,8 @@
         <main class="main-content">
             <header class="header">
                 <div class="user-info">
-                    <span class="user-name">Morgan Oakley (@morgan)</span>
-                    <img src="user-avatar.png" alt="User Avatar" class="user-avatar">
+                    <span class="user-name">Administrador</span>
+                    <i class="material-icons">account_box</i>
                 </div>
             </header>
             <section class="projects">

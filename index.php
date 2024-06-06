@@ -37,7 +37,7 @@ if ($error) {
 <div class="">
     <div class="row">
         <div class="col-md-12">
-            <a href="crear.php" class="btn btn-primary mt-4">CREAR URUARIO</a>
+            <a href="crear.php" class="btn btn-primary mt-4">CREAR USUARIO</a>
             <hr>
             <form method="post" class="form-inline">
                 <div class="form-group mr-3">
@@ -85,7 +85,7 @@ if ($error) {
                                 <td><?php echo escapar($fila["tamano"]); ?></td>
                                 <td><?php echo escapar($fila["sexo"]); ?></td>
                                 <td><?php echo escapar($fila["fecha"]); ?></td>
-                                <td><?php echo escapar($fila["hora"]); ?></td>
+                                <td><?php echo escapar($fila["hora"]) ?></td>
                                 <td>
                                     <a href="<?= 'borrar.php?id=' . escapar($fila["id"]) ?>">🗑️Borrar</a>
                                     <a href="<?= 'editar.php?id=' . escapar($fila["id"]) ?>" .>✏️Editar</a>
