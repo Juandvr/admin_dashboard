@@ -23,6 +23,9 @@
                 <a href="servicios/index_servicios.php">Servicios</a>
             </nav>
             <nav class="menu">
+                <a href="mascotas/index_mascotas.php">Servicios</a>
+            </nav>
+            <nav class="menu">
                 <a href="citas/index_citas.php">Citas</a>
             </nav>
         </aside>
