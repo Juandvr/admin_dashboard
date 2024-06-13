@@ -6,17 +6,17 @@ try {
     $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['name'];
     $conexion = new PDO($dsn, $config['db']['user'], $config['db']['pass'], $config['db']['options']);
     if (isset($_POST['apellido'])) {
-        $consultaSQL = "SELECT * FROM citas WHERE apellido LIKE '%" . $_POST['apellido'] . "%'";
+        $consultaSQL = "SELECT * FROM cliente WHERE apellido LIKE '%" . $_POST['apellido'] . "%'";
     } else {
-        $consultaSQL = "SELECT * FROM citas";
+        $consultaSQL = "SELECT * FROM cliente";
     }
     $sentencia = $conexion->prepare($consultaSQL);
     $sentencia->execute();
-    $citas = $sentencia->fetchAll();
+    $usuarios = $sentencia->fetchAll();
 } catch (PDOException $error) {
     $error = $error->getMessage();
 }
-$titulo = isset($_POST['apellido']) ? 'Lista de citas (' . $_POST['apellido'] . ')' : 'Lista de citas';
+$titulo = isset($_POST['apellido']) ? 'Usuarios con apellido (' . $_POST['apellido'] . ')' : 'Lista de usuarios';
 ?>
 <?php include "template/header.php"; ?>
 <?php
@@ -55,40 +55,30 @@ if ($error) {
             <table class="table">
                 <thead>
                     <tr>
-                        <th>#</th>
-                        <th>Nombre cliente</th>
-                        <th>Apellido</th>
-                        <th>Email</th>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Apellidos</th>
                         <th>Telefono</th>
-                        <th>Nombre mascota</th>
-                        <th>Raza</th>
-                        <th>Tamaño</th>
-                        <th>Sexo</th>
-                        <th>Fecha</th>
-                        <th>Hora</th>
+                        <th>Email</th>
+                        <th>Direccion</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                    if ($citas && $sentencia->rowCount() > 0) {
-                        foreach ($citas as $fila) {
+                    if ($usuarios && $sentencia->rowCount() > 0) {
+                        foreach ($usuarios as $fila) {
                     ?>
                             <tr>
-                                <td><?php echo escapar($fila["id"]); ?></td>
-                                <td><?php echo escapar($fila["nombre_cliente"]); ?></td>
-                                <td><?php echo escapar($fila["apellido"]); ?></td>
-                                <td><?php echo escapar($fila["email"]); ?></td>
+                                <td><?php echo escapar($fila["ID_Cliente"]); ?></td>
+                                <td><?php echo escapar($fila["nombre"]); ?></td>
+                                <td><?php echo escapar($fila["apellidos"]); ?></td>
                                 <td><?php echo escapar($fila["telefono"]); ?></td>
-                                <td><?php echo escapar($fila["nombre_mascota"]); ?></td>
-                                <td><?php echo escapar($fila["raza"]); ?></td>
-                                <td><?php echo escapar($fila["tamano"]); ?></td>
-                                <td><?php echo escapar($fila["sexo"]); ?></td>
-                                <td><?php echo escapar($fila["fecha"]); ?></td>
-                                <td><?php echo escapar($fila["hora"]) ?></td>
+                                <td><?php echo escapar($fila["email"]); ?></td>
+                                <td><?php echo escapar($fila["direccion"]); ?></td>
                                 <td>
-                                    <a href="<?= 'borrar.php?id=' . escapar($fila["id"]) ?>">🗑️Borrar</a>
-                                    <a href="<?= 'editar.php?id=' . escapar($fila["id"]) ?>" .>✏️Editar</a>
+                                    <a href="<?= 'borrar.php?id=' . escapar($fila["ID_Cliente"]) ?>">🗑️Borrar</a>
+                                    <a href="<?= 'editar.php?id=' . escapar($fila["ID_Cliente"]) ?>" .>✏️Editar</a>
                                 </td>
                             </tr>
                     <?php

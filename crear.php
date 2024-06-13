@@ -1,119 +1,68 @@
 <?php
-include 'funciones.php';
+include 'db_connection.php';
+
+$resultado = '';
+$error = false;
+
 if (isset($_POST['submit'])) {
-    $resultado = [
-        'error' => false,
-        'mensaje' => 'La cita para ' . escapar($_POST['nombre_cliente']) . ' ha sido agregada con éxito'
-    ];
-    $config = include 'config.php';
-    try {
-        $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['name'];
-        $conexion = new PDO($dsn, $config['db']['user'], $config['db']['pass'], $config['db']['options']);
-        $cita = array(
-            "nombre_cliente" => $_POST['nombre_cliente'],
-            "apellido" => $_POST['apellido'],
-            "email" => $_POST['email'],
-            "telefono" => $_POST['telefono'],
-            "nombre_mascota" => $_POST['nombre_mascota'],
-            "raza" => $_POST['raza'],
-            "tamano" => $_POST['tamano'],
-            "sexo" => $_POST['sexo'],
-            "fecha" => $_POST['fecha'],
-            "hora" => $_POST['hora'],
-        );
-        $consultaSQL = "INSERT INTO citas (nombre_cliente, apellido, email, telefono, nombre_mascota, raza, tamano, sexo, fecha, hora) values (:" . implode(", :", array_keys($cita)) . ")";
-        $sentencia = $conexion->prepare($consultaSQL);
-        $sentencia->execute($cita);
-    } catch (PDOException $error) {
-        $resultado['error'] = true;
-        $resultado['mensaje'] = $error->getMessage();
+    // Obtener los datos del formulario
+    $ID_Cliente = $_POST['ID_Cliente'];
+    $nombre = $_POST['nombre'];
+    $apellidos = $_POST['apellidos'];
+    $telefono = $_POST['telefono'];
+    $email = $_POST['email'];
+    $direccion = $_POST['direccion'];
+    $password = $_POST['contraseña'];
+
+    // Encriptar la contraseña
+    $password_hash = password_hash($password, PASSWORD_BCRYPT);
+
+    // Preparar y ejecutar la consulta SQL
+    $stmt = $conn->prepare("INSERT INTO cliente (ID_Cliente, nombre, apellidos, telefono, email, direccion, contraseña) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("sssssss", $ID_Cliente, $nombre, $apellidos, $telefono, $email, $direccion, $password_hash);
+
+    if ($stmt->execute()) {
+        $resultado = "Usuario agregado con exito.";
+    } else {
+        $resultado = "Error: " . $stmt->error;
+        $error = true;
     }
+
+    $stmt->close();
+    $conn->close();
 }
 ?>
 
 <?php include "template/header.php"; ?>
 
-<?php
-if (isset($resultado)) {
-?>
+<?php if (!empty($resultado)) { ?>
     <div class="container mt-3">
         <div class="row">
             <div class="col-md-12">
-                <div class="alert alert-<?= $resultado['error'] ? 'danger' : 'success' ?>" role="alert">
-                    <?= $resultado['mensaje'] ?>
+                <div class="alert alert-<?= $error ? 'danger' : 'success' ?>" role="alert">
+                    <?= $resultado ?>
                 </div>
             </div>
         </div>
     </div>
-<?php
-}
-?>
-<div class="container" id="formucita">
-    <div class="row">
-        <div class="col-md-12">
-            <h2 class="mt-4">Crea una cita</h2>
-            <hr>
-            <form method="post">
-                <div class="form-group">
-                    <label for="nombre_cliente">Nombre cliente</label>
-                    <input type="text" name="nombre_cliente" id="nombre_cliente" class="form-control">
-                </div>
-                <br>
-                <div class="form-group">
-                    <label for="apellido">Apellido</label>
-                    <input type="text" name="apellido" id="apellido" class="form-control">
-                </div>
-                <br>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" name="email" id="email" class="form-control">
-                </div>
-                <br>
-                <div class="form-group">
-                    <label for="telefono">Telefono</label>
-                    <input type="text" name="telefono" id="telefono" class="form-control">
-                </div>
-                <br>
-                <div class="form-group">
-                    <label for="nombre_mascota">Nombre mascota</label>
-                    <input type="text" name="nombre_mascota" id="nombre_mascota" class="form-control">
-                </div>
-                <br>
-                <div class="form-group">
-                    <label for="raza">Raza</label>
-                    <input type="text" name="raza" id="raza" class="form-control">
-                </div>
-                <br>
-                <div class="form-group">
-                    <label for="tamano">Tamaño</label>
-                    <input type="text" name="tamano" id="tamano" class="form-control">
-                </div>
-                <br>
-                <div class="form-group">
-                    <label for="sexo">Sexo</label>
-                    <input type="text" name="sexo" id="sexo" class="form-control">
-                </div>
-                <br>
-                <div class="form-group">
-                    <label for="fecha">Fecha</label>
-                    <input type="date" name="fecha" id="fecha" class="form-control">
-                </div>
-                <br>
-                <div class="form-group">
-                    <label for="hora">Hora</label>
-                    <input type="time" name="hora" id="hora" class="form-control">
-                </div>
-                <br>
-                <div class="form-group">
-                    <input type="submit" name="submit" class="btn btn-primary" value="Enviar"> 
-                </div>
-                <br>
-                <div class="form-group" id="regresar">
-                    <a class="btn btn-primary" href="index.php">Regresar al inicio</a>
-                </div>
-            </form>
+    <?php } ?>
+    <div class="container" id="formuRegistro">
+        <div class="row" style="justify-content: center">
+            <div class="col-6">
+                <h2>Agregar usuario</h2>
+                <form method="post">
+                    <input type="text" name="ID_Cliente" placeholder="Digita tu identificacion" class="form-control" /><br />
+                    <input type="text" name="nombre" placeholder="Digita tu nombre" class="form-control" /><br />
+                    <input type="text" name="apellidos" placeholder="Digita tus apellidos" class="form-control" /><br />
+                    <input type="text" name="telefono" placeholder="Digita tu telefono" class="form-control" /><br />
+                    <input type="email" name="email" placeholder="Digita tu email" class="form-control" /><br />
+                    <input type="text" name="direccion" placeholder="Digita tu direccion" class="form-control" /><br />
+                    <input type="password" name="contraseña" placeholder="Digita tu contraseña" class="form-control" /><br />
+                    <input type="submit" name="submit" value="Agregar usuario" class="btn btn-danger" />
+                </form>
+                <br />
+            </div>
         </div>
     </div>
-</div>
 
 <?php include "template/footer.php"; ?>

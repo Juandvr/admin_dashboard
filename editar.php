@@ -7,41 +7,30 @@ $resultado = [
 ];
 if (!isset($_GET['id'])) {
     $resultado['error'] = true;
-    $resultado['mensaje'] = 'La cita no existe';
+    $resultado['mensaje'] = 'El usuario no existe';
 }
 if (isset($_POST['submit'])) {
     try {
         $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['name'];
         $conexion = new PDO($dsn, $config['db']['user'], $config['db']['pass'], $config['db']['options']);
-        $cita = [
+        $usuario = [
             "id" => $_GET['id'],
-            "nombre_cliente" => $_POST['nombre_cliente'],
-            "apellido" => $_POST['apellido'],
-            "email" => $_POST['email'],
+            "nombre" => $_POST['nombre'],
+            "apellidos" => $_POST['apellidos'],
             "telefono" => $_POST['telefono'],
-            "nombre_mascota" => $_POST['nombre_mascota'],
-            "raza" => $_POST['raza'],
-            "tamano" => $_POST['tamano'],
-            "sexo" => $_POST['sexo'],
-            "fecha" => $_POST['fecha'],
-            "hora" => $_POST['hora']
+            "email" => $_POST['email'],
+            "direccion" => $_POST['direccion']
         ];
-        $consultaSQL = "UPDATE citas SET
-nombre_cliente = :nombre_cliente,
-apellido = :apellido,
-email = :email,
+        $consultaSQL = "UPDATE cliente SET
+nombre = :nombre,
+apellidos = :apellidos,
 telefono = :telefono,
-nombre_mascota = :nombre_mascota,
-raza = :raza,
-tamano = :tamano,
-sexo = :sexo,
-fecha = :fecha,
-hora = :hora,
-updated_at = NOW()
-WHERE id = :id";
+email = :email,
+direccion = :direccion
+WHERE ID_Cliente = :id";
 
         $consulta = $conexion->prepare($consultaSQL);
-        $consulta->execute($cita);
+        $consulta->execute($usuario);
     } catch (PDOException $error) {
         $resultado['error'] = true;
         $resultado['mensaje'] = $error->getMessage();
@@ -51,13 +40,13 @@ try {
     $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['name'];
     $conexion = new PDO($dsn, $config['db']['user'], $config['db']['pass'], $config['db']['options']);
     $id = $_GET['id'];
-    $consultaSQL = "SELECT * FROM citas WHERE id =" . $id;
+    $consultaSQL = "SELECT * FROM cliente WHERE ID_Cliente =" . $id;
     $sentencia = $conexion->prepare($consultaSQL);
     $sentencia->execute();
-    $cita = $sentencia->fetch(PDO::FETCH_ASSOC);
-    if (!$cita) {
+    $usuario = $sentencia->fetch(PDO::FETCH_ASSOC);
+    if (!$usuario) {
         $resultado['error'] = true;
-        $resultado['mensaje'] = 'No se ha encontrado el cita';
+        $resultado['mensaje'] = 'No se ha encontrado el usuario';
     }
 } catch (PDOException $error) {
     $resultado['error'] = true;
@@ -88,7 +77,7 @@ if (isset($_POST['submit']) && !$resultado['error']) {
         <div class="row">
             <div class="col-md-12">
                 <div class="alert alert-success" role="alert">
-                    La cita ha sido actualizada correctamente
+                    El usuario ha sido actualizado correctamente
                 </div>
             </div>
         </div>
@@ -97,62 +86,37 @@ if (isset($_POST['submit']) && !$resultado['error']) {
 }
 ?>
 <?php
-if (isset($cita) && $cita) {
+if (isset($usuario) && $usuario) {
 ?>
     <div class="container" id="formeditar">
         <div class="row">
             <div class="col-md-12">
-                <h2 class="mt-4">Editando la cita de <?= escapar($cita['nombre_cliente']) . ' ' . escapar($cita['apellido']) ?></h2>
+                <h2 class="mt-4">Editando el usuario <?= escapar($usuario['nombre']) . ' ' . escapar($usuario['apellidos']) ?></h2>
                 <hr>
                 <form method="post">
                     <div class="form-group">
-                        <label for="nombre_cliente">Nombre cliente</label>
-                        <input type="text" name="nombre_cliente" id="nombre_cliente" value="<?= escapar($cita['nombre_cliente']) ?>" class="form-control">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" name="nombre" id="nombre" value="<?= escapar($usuario['nombre']) ?>" class="form-control">
                     </div>
                     <br>
                     <div class="form-group">
-                        <label for="apellido">Apellido</label>
-                        <input type="text" name="apellido" id="apellido" value="<?= escapar($cita['apellido']) ?>" class="form-control">
-                    </div>
-                    <br>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" name="email" id="email" value="<?= escapar($cita['email']) ?>" class="form-control">
+                        <label for="apellidos">Apellidos</label>
+                        <input type="text" name="apellidos" id="apellidos" value="<?= escapar($usuario['apellidos']) ?>" class="form-control">
                     </div>
                     <br>
                     <div class="form-group">
                         <label for="telefono">Telefono</label>
-                        <input type="text" name="telefono" id="telefono" value="<?= escapar($cita['telefono']) ?>" class="form-control">
+                        <input type="text" name="telefono" id="telefono" value="<?= escapar($usuario['telefono']) ?>" class="form-control">
                     </div>
                     <br>
                     <div class="form-group">
-                        <label for="nombre_mascota">Nombre mascota</label>
-                        <input type="text" name="nombre_mascota" id="nombre_mascota" value="<?= escapar($cita['nombre_mascota']) ?>" class="form-control">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" id="email" value="<?= escapar($usuario['email']) ?>" class="form-control">
                     </div>
                     <br>
                     <div class="form-group">
-                        <label for="raza">Raza</label>
-                        <input type="text" name="raza" id="raza" value="<?= escapar($cita['raza']) ?>" class="form-control">
-                    </div>
-                    <br>
-                    <div class="form-group">
-                        <label for="tamano">Tamaño</label>
-                        <input type="text" name="tamano" id="tamano" value="<?= escapar($cita['tamano']) ?>" class="form-control">
-                    </div>
-                    <br>
-                    <div class="form-group">
-                        <label for="sexo">Sexo</label>
-                        <input type="text" name="sexo" id="sexo" value="<?= escapar($cita['sexo']) ?>" class="form-control">
-                    </div>
-                    <br>
-                    <div class="form-group">
-                        <label for="fecha">Fecha</label>
-                        <input type="date" name="fecha" id="fecha" value="<?= escapar($cita['fecha']) ?>" class="form-control">
-                    </div>
-                    <br>
-                    <div class="form-group">
-                        <label for="hora">Hora</label>
-                        <input type="time" name="hora" id="hora" class="form-control">
+                        <label for="direccion">Direccion</label>
+                        <input type="text" name="direccion" id="direccion" value="<?= escapar($usuario['direccion']) ?>" class="form-control">
                     </div>
                     <br>
                     <div class="form-group">

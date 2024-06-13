@@ -4,7 +4,7 @@ return [
 'host' => 'localhost',
 'user' => 'root',
 'pass' => '',
-'name' => 'agenda',
+'name' => 'HAKUNA_MATATA',
 'options' => [
 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
 ]
