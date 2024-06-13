@@ -26,7 +26,7 @@ ID_Cliente = :ID_Cliente,
 ID_Mascota = :ID_Mascota,
 fecha = :fecha,
 hora = :hora,
-ID_Servicio = :ID_Servicio
+ID_Servicio = :servicio
 WHERE id = :id";
 
         $consulta = $conexion->prepare($consultaSQL);
