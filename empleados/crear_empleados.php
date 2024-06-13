@@ -6,7 +6,7 @@ $error = false;
 
 if (isset($_POST['submit'])) {
     // Obtener los datos del formulario
-    $ID_Cliente = $_POST['ID_Empleados'];
+    $ID_Empleados = $_POST['ID_Empleados'];
     $nombre = $_POST['nombre'];
     $apellidos = $_POST['apellidos'];
     $telefono = $_POST['telefono'];
@@ -15,7 +15,7 @@ if (isset($_POST['submit'])) {
 
     // Preparar y ejecutar la consulta SQL
     $stmt = $conn->prepare("INSERT INTO empleados (ID_Empleados, nombre, apellidos, telefono, correo, direccion) VALUES (?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("ssssss", $ID_Cliente, $nombre, $apellidos, $telefono, $email, $direccion);
+    $stmt->bind_param("ssssss", $ID_Empleados, $nombre, $apellidos, $telefono, $email, $direccion);
 
     if ($stmt->execute()) {
         $resultado = "Empleado agregado con exito.";
