@@ -39,12 +39,6 @@ if ($error) {
         <div class="col-md-12">
             <a href="empleados/crear_empleados.php" class="btn btn-primary mt-4">Agregar un empleado</a>
             <hr>
-            <form method="post" class="form-inline">
-                <div class="form-group mr-3">
-                    <input type="text" id="apellidos" name="apellidos" placeholder="Buscar por apellido" class="form-control">
-                </div>
-                <button type="submit" name="submit" class="btn btn-primary">Ver resultados</button>
-            </form>
         </div>
     </div>
 </div>

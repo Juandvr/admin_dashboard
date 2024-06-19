@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <base href="/admin_dashboard/">
+    <base href="/proyecto/admin_dashboard/">
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="estilo.css">
@@ -13,6 +13,9 @@
     <div class="container">
         <aside class="sidebar">
             <h2 class="logo">Dashboard</h2>
+            <nav class="menu">
+                <a href="../index.php">Inicio</a>
+            </nav>
             <nav class="menu">
                 <a href="index.php">Usuarios</a>
             </nav>
